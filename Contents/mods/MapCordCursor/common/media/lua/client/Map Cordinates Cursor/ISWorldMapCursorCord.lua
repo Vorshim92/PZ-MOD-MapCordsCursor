@@ -1,5 +1,5 @@
 require "ISUI/ISPanel"
-require "ISToolTip"  
+require "ISToolTip"
 -- ISWorldMap_instance (global variable to check if the ISWorldMap is already initialise and visibile with ISWorldMap_instance:isVisible() )
 
 ISToolTipCord = ISToolTip:derive("ISToolTipCord")
@@ -7,11 +7,6 @@ ISToolTipCord = ISToolTip:derive("ISToolTipCord")
 local MGRS = false
 if getActivatedMods():contains("\\MGRS (FMCCYAYFGLE)") then
     MGRS = true
-end
-
-local MDZ = false
-if getActivatedMods():contains("\\MoreDifficultZones") or getActivatedMods():contains("\\TierZonyne42") then
-    MDZ = true
 end
 
 -- local ISWorldMap_render = ISWorldMap.render;
@@ -83,11 +78,6 @@ function ISWorldMap:updateTooltip(x, y)
             y = y + 50
         end
         self.tooltip:setY(y + 10)
-        if MDZ then
-            -- Ottieni tierLevel e zoneName attuali
-            self.tooltip.currentTierLevel, self.tooltip.currentZoneName, self.x, self.y, self.control, self.toxic, self.sprinter, self.pinpoint, self.cognition = checkZoneAtXY(worldX, worldY)
-            if self.tooltip.currentZoneName == "Unnamed Zone" then self.tooltip.currentZoneName = "Default" end
-        end
     else
         self.tooltip:setVisible(false)
         -- self.tooltip:removeFromUIManager()
@@ -108,28 +98,6 @@ function ISWorldMap:render()
             self.tooltip.coordX,
             self.tooltip.coordY
         )
-    
-        -- Se MDZ è definito, aggiungi Tier e Zone
-        if MDZ then 
-            if self.tooltip.currentTierLevel and self.tooltip.currentZoneName then
-                self.tooltip.description = self.tooltip.description .. string.format(
-                    " <LINE> <RGB:0,1,0>T: <SPACE><RGB:1,1,1>%d  <SPACE><RGB:0,1,0>Z: <SPACE><RGB:1,1,1>%s",
-                    self.tooltip.currentTierLevel,
-                    self.tooltip.currentZoneName
-                )
-            end
-            if self.toxic then
-                self.tooltip.description = self.tooltip.description .. " <SPACE><IMAGE:media/ui/biohazardOn.png,16,16>"
-            else
-                self.tooltip.description = self.tooltip.description .. " <SPACE><IMAGE:media/ui/biohazardOff.png,16,16>"
-            end
-            if self.sprinter then
-                self.tooltip.description = self.tooltip.description .. string.format(
-                    " <LINE> <RGB:0,1,0>Sprinter: <SPACE><RGB:1,1,1>%d%%",
-                    self.sprinter
-                )
-            end
-        end
     end
 
 end

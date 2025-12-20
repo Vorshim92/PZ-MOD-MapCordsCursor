@@ -1,0 +1,5 @@
+name=Map Coordinates - TierZonyne Integration
+id=mapcursorcord-tierzonyne
+description=Adds TierZonyne/MoreDifficultZones info to Map Coordinates tooltip
+require=mapcursorcord,TierZonyne42
+poster=poster.png
