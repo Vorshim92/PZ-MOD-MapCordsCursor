@@ -1,0 +1,7 @@
+name=Map Coordinates Location Cursor Tooltip [B41/B42]
+id=mapcursorcord
+description=This mod add a tooltip on cursor when you open the map. showing the coordinates! and enable cell grid also for the user!
+poster=poster.png
+icon=modicon.png
+author=Vorshim92
+versionMin=42.15
